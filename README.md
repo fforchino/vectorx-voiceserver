@@ -29,3 +29,8 @@ that currently points to my hosted server:
 that's it.
 
 Any help in enhancing the server and its interface towards go-sdk is welcome. 
+
+Changelog
+
+VERSION_01
+- First version on github
