@@ -102,8 +102,9 @@ class FakeYouTTSModel extends TTSModelBase
 		$response = json_decode($out);
         if ($response->success==true) {
             $retFile = "";
+            sleep(2);
             do {
-                sleep(5);
+                sleep(1);
                 $retFile = $this->waitForCompletion($response->inference_job_token);
             } while ($retFile=="");
             if ($retFile!="FAIL") {
