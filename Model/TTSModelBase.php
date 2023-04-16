@@ -35,6 +35,7 @@ abstract class TTSModelBase
 		if ($forceRefresh || !file_exists($textFileName)) {
             $this->fileLog("Request received (".strlen($text)." characters), start rendering process.");
 			$this->getTextRemote($text, $textFileName);
+			$this->fileLog("Rendering process ends.");
 		} else {
 		    $this->fileLog("Request received (".strlen($text)." characters), serving with cache data.");
         }
