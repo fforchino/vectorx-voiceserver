@@ -33,8 +33,11 @@ abstract class TTSModelBase
 		$textFileName.="/".$this->textToFileName($text);
 
 		if ($forceRefresh || !file_exists($textFileName)) {
+            $this->fileLog("Request received (".strlen($text)." characters), start rendering process.");
 			$this->getTextRemote($text, $textFileName);
-		}
+		} else {
+		    $this->fileLog("Request received (".strlen($text)." characters), serving with cache data.");
+        }
 		$mime_type = $this->getOutputMimeType();
 
 		header('Content-type: '.$mime_type);
@@ -43,6 +46,7 @@ abstract class TTSModelBase
 		header('X-Pad: avoid browser bug');
 		header('Cache-Control: no-cache');
 		readfile($textFileName);
+        $this->fileLog("Request served, ".filesize($textFileName)." bytes sent.");
     }
 
    	public abstract function getVoices($language, $forceRefresh = false);
@@ -75,5 +79,10 @@ abstract class TTSModelBase
 	abstract public function getTextRemote($text, $fName);
 	abstract public function getAvailbleVoicesRemote($cachedFileName, $userPreferredVoice);
 	abstract public function getAvailbleVoicesFromCache($cachedFileName, $userPreferredVoice);
+
+	protected function fileLog($text) {
+	    $text = date(""Y-m-d H:i:s")." [".$_SERVER['REMOTE_ADDR']."] ".$text;
+	    file_put_contents(LOG_FILENAME, $text, FILE_APPEND | LOCK_EX);
+	}
 }
 ?>

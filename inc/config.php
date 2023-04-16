@@ -2,6 +2,7 @@
 define("RESEMBLE_AI_API_TOKEN", "YOUR_API_TOKEN_HERE");
 define("FAKEYOU_USERNAME", "YOUR_EMAIL_HERE");
 define("FAKEYOU_PASSWORD", "YOUR_PASSWORD_HERE");
+define("LOG_FILENAME", "log.txt");
 
 function guidv4($data)
 {
