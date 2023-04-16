@@ -81,7 +81,7 @@ abstract class TTSModelBase
 	abstract public function getAvailbleVoicesFromCache($cachedFileName, $userPreferredVoice);
 
 	protected function fileLog($text) {
-	    $text = date(""Y-m-d H:i:s")." [".$_SERVER['REMOTE_ADDR']."] ".$text;
+	    $text = date("Y-m-d H:i:s")." [".$_SERVER['REMOTE_ADDR']."] ".$text."\n";
 	    file_put_contents(LOG_FILENAME, $text, FILE_APPEND | LOCK_EX);
 	}
 }
