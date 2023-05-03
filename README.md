@@ -32,6 +32,9 @@ Any help in enhancing the server and its interface towards go-sdk is welcome.
 
 Changelog
 
+VERSION_03
+- Added API hit counter
+
 VERSION_02
 - Decrease timeouts when rendering.
 - Log start and end of jobs to file.

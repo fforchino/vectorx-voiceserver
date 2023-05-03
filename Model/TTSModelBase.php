@@ -48,6 +48,13 @@ abstract class TTSModelBase
 		header('Cache-Control: no-cache');
 		readfile($textFileName);
         $this->fileLog("Request served, ".filesize($textFileName)." bytes sent.");
+
+        $hit_count = 0;
+        if (file_exists(HITS_FILENAME)) {
+          $hit_count = @file_get_contents(HITS_FILENAME);
+        }
+        $hit_count++;
+        @file_put_contents(HITS_FILENAME, $hit_count);
     }
 
    	public abstract function getVoices($language, $forceRefresh = false);
